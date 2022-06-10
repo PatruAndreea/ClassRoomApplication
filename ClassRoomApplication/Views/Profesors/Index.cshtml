@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ClassRoomApplication.Models.Profesor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<link rel="stylesheet" href="~/css/background.css" />
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProfesorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhotoURL)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProfesorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </td>
+           <td>
+              
+                @if(item.PhotoURL != null)
+                {
+                        <img src="@Url.Content(item.PhotoURL)"/>
+                }
+            
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProfesorId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ProfesorId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProfesorId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
